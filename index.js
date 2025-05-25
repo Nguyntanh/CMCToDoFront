@@ -3,7 +3,7 @@ const todoList = document.getElementById('todoList');
 const message = document.getElementById('message');
 
 // Sử dụng URL backend local (thay đổi khi deploy)
-const apiUrl = 'http://localhost:3000/'; // Thay bằng https://cmctodo.onrender.com/ khi deploy
+const apiUrl = 'https://cmctodo.onrender.com/'; // Thay bằng https://cmctodo.onrender.com/ khi deploy
 
 async function showMessage(text, isError = false) {
     message.textContent = text;
