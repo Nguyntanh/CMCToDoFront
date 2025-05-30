@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 20px;
+  background-color: #f8f9fa;
+}
+
+header img {
+  width: 80px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  height: 30px;
+}
+
+.search input {
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search img {
+  width: 18px;
+  height: 18px;
+  margin-left: -25px;
+}
+
+.tools {
+  display: flex;
+  gap: 10px;
+}
+
+.tools button {
+  width: 30px;
+  height: 30px;
+  background: none;
+  font-size: 18px;
+}
+
+main {
+  display: flex;
+  min-height: calc(100vh - 80px);
+}
+
+section {
+  transition: all 0.3s ease;
+}
+
+#sec1 {
+  background-color: #e0f7fa;
+  width: 250px;
+  padding: 20px;
+}
+
+#sec1 ul {
+  margin: 20px 0;
+}
+
+#sec1 button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  background: none;
+}
+
+#sec1 .newCreate {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+}
+
+#menu_img {
+  width: 20px;
+  height: 20px;
+}
+
+#sec2 {
+  background-color: #fff;
+  flex-grow: 1;
+  padding: 20px;
+}
+
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+#taskList .completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+#sec3 {
+  background-color: #f8f9fa;
+  width: 300px;
+  padding: 20px;
+}
+
+#sec3 form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#sec3 input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#sec3 button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+}
+
+#sec3 button[type="button"] {
+  background-color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+  #sec1, #sec3 {
+    width: 100%;
+  }
+}

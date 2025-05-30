@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMC To Do</title>
+  <link rel="stylesheet" href="src/css/home.css">
+</head>
+<body>
+  <header>
+    <img src="assets/img/CMC To Do.png" alt="Logo CMC">
+    <div class="search">
+      <input type="search" id="searchInput" placeholder="Tìm kiếm công việc...">
+      <img src="assets/img/search.png" alt="Search icon">
+    </div>
+    <div class="tools">
+      <button class="setting" title="Cài đặt">⚙️</button>
+      <button class="help" title="Trợ giúp">❓</button>
+      <button class="whatnew" title="Có gì mới">🔔</button>
+    </div>
+  </header>
+  <main>
+    <section id="sec1">
+      <button id="bt1" onclick="showSection2()"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
+      <ul>
+        <li><button onclick="filterTasks('today')">Ngày của tôi</button></li>
+        <li><button onclick="filterTasks('important')">Quan trọng</button></li>
+        <li><button onclick="filterTasks('all')">Tác vụ</button></li>
+      </ul>
+      <button class="newCreate" onclick="showSection3()">+ Tạo mới</button>
+    </section>
+    <section id="sec2">
+      <button id="bt2" onclick="showSection1()" style="display: none;"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
+      <ul id="taskList"></ul>
+    </section>
+    <section id="sec3" style="display: none;">
+      <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="Nhập công việc..." required>
+        <label><input type="checkbox" id="isToday"> Ngày của tôi</label>
+        <label><input type="checkbox" id="important"> Quan trọng</label>
+        <button type="submit">Thêm</button>
+        <button type="button" onclick="disappearSection3()">Hủy</button>
+      </form>
+    </section>
+  </main>
+  <script src="src/js/home.js"></script>
+</body>
+</html>
