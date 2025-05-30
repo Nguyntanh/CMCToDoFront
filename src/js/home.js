@@ -65,7 +65,7 @@ async function addTask(event) {
   if (!text) return;
 
   try {
-    const response = await fetch('http://localhost:3000/tasks', {
+    const response = await fetch('https://cmctodo.onrender.com/tasks', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text, isToday, important })
@@ -88,7 +88,7 @@ async function addTask(event) {
 // Delete task
 async function deleteTask(id) {
   try {
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'DELETE'
     });
     if (!response.ok) {
@@ -105,7 +105,7 @@ async function deleteTask(id) {
 // Toggle task completion
 async function toggleTask(id, completed) {
   try {
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ completed })
