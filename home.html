@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CMC To Do</title>
   <link rel="stylesheet" href="src/css/home.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -23,26 +24,43 @@
     <section id="sec1">
       <button id="bt1" onclick="showSection2()"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
       <ul>
+        <li><button onclick="filterTasks('all')">Tác vụ</button></li>
         <li><button onclick="filterTasks('today')">Ngày của tôi</button></li>
         <li><button onclick="filterTasks('important')">Quan trọng</button></li>
-        <li><button onclick="filterTasks('all')">Tác vụ</button></li>
+        <li><button onclick="showCalendar()">Lịch</button></li>
+        <li><button onclick="showCompleted()">Đã hoàn thành</button></li>
       </ul>
       <button class="newCreate" onclick="showSection3()">+ Tạo mới</button>
     </section>
     <section id="sec2">
       <button id="bt2" onclick="showSection1()" style="display: none;"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
+      <div class="sec2-header">
+        <h2 id="sec2Title">Tác vụ</h2>
+        <button class="addNew" onclick="showSection3()">Thêm mới</button>
+      </div>
+      <div id="calendar" style="display: none;"></div>
       <ul id="taskList"></ul>
     </section>
     <section id="sec3" style="display: none;">
+      <h3 id="formTitle">Tạo mới</h3>
       <form id="taskForm">
         <input type="text" id="taskInput" placeholder="Nhập công việc..." required>
+        <input type="date" id="dueDate" placeholder="Ngày hết hạn">
+        <select id="noteColor">
+          <option value="">Chọn màu</option>
+          <option value="#1E90FF">Xanh đậm</option>
+          <option value="#4682B4">Xanh thép</option>
+          <option value="#B0C4DE">Xanh nhạt</option>
+          <option value="#5F9EA0">Xanh lam</option>
+        </select>
         <label><input type="checkbox" id="isToday"> Ngày của tôi</label>
         <label><input type="checkbox" id="important"> Quan trọng</label>
-        <button type="submit">Thêm</button>
+        <button type="submit" id="submitButton">Thêm</button>
         <button type="button" onclick="disappearSection3()">Hủy</button>
       </form>
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
   <script src="src/js/home.js"></script>
 </body>
 </html>
