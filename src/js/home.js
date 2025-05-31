@@ -95,22 +95,40 @@ function disappearSection3() {
 }
 
 // Initialize FullCalendar
+let calendar; // Biến toàn cục để lưu đối tượng FullCalendar
 function initCalendar() {
   const calendarEl = document.getElementById('calendar');
-  const calendar = new FullCalendar.Calendar(calendarEl, {
+  calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     events: async (info, successCallback) => {
       const tasks = await fetchTasks(null, true);
-      const events = tasks.filter(task => !task.deleted).map(task => ({
-        title: task.text,
-        start: task.dueDate,
-        color: task.color || '#87CEFF',
-      }));
+      const events = tasks
+        .filter(task => !task.deleted && task.dueDate) // Chỉ hiển thị công việc chưa xóa và có dueDate
+        .map(task => ({
+          id: task._id,
+          title: task.text,
+          start: task.dueDate,
+          color: task.color || '#87CEFF',
+          extendedProps: { isToday: task.isToday, important: task.important }
+        }));
       successCallback(events);
     },
     dateClick: function (info) {
       showSection3({ date: info.dateStr });
     },
+    eventClick: function (info) {
+      showSection3({
+        id: info.event.id,
+        text: info.event.title,
+        dueDate: info.event.start,
+        color: info.event.backgroundColor,
+        isToday: info.event.extendedProps.isToday,
+        important: info.event.extendedProps.important
+      });
+    },
+    height: 'auto', // Tự động điều chỉnh chiều cao
+    contentHeight: 'auto',
+    aspectRatio: 1.5 // Tỷ lệ chiều rộng/chiều cao
   });
   calendar.render();
 }
@@ -123,6 +141,9 @@ function showCalendar() {
   if (window.innerWidth <= 768) {
     document.getElementById('sec1').style.display = 'none';
     document.getElementById('bt2').style.display = 'block';
+  }
+  if (calendar) {
+    calendar.refetchEvents(); // Cập nhật sự kiện khi mở tab Lịch
   }
 }
 
@@ -229,6 +250,9 @@ async function addOrUpdateTask(event) {
     }
     disappearSection3();
     fetchTasks();
+    if (calendar) {
+      calendar.refetchEvents(); // Cập nhật lịch sau khi thêm/sửa
+    }
   } catch (error) {
     console.error('Error processing task:', error);
     alert(`Không thể ${id ? 'cập nhật' : 'thêm'} công việc: ${error.message}`);
@@ -247,7 +271,12 @@ async function deleteTask(id) {
     }
     const li = document.querySelector(`#taskList li:has(button[onclick="deleteTask('${id}')"])`);
     li.classList.add('removed');
-    setTimeout(() => fetchTasks(), 300);
+    setTimeout(() => {
+      fetchTasks();
+      if (calendar) {
+        calendar.refetchEvents(); // Cập nhật lịch sau khi xóa
+      }
+    }, 300);
   } catch (error) {
     console.error('Error deleting task:', error);
     alert('Không thể xóa công việc: ' + error.message);
@@ -267,6 +296,9 @@ async function toggleTask(id, completed) {
       throw new Error(errorData.message || 'Failed to update task');
     }
     fetchTasks();
+    if (calendar) {
+      calendar.refetchEvents(); // Cập nhật lịch sau khi toggle
+    }
   } catch (error) {
     console.error('Error toggling task:', error);
     alert('Không thể cập nhật công việc: ' + error.message);
