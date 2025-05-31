@@ -1,3 +1,4 @@
+/* frontend/src/css/home.css */
 * {
   margin: 0;
   padding: 0;
@@ -88,7 +89,7 @@ section {
   background-color: #B0C4DE;
   width: 250px;
   padding: 20px;
-  display: block; /* Hiển thị mặc định trên web */
+  display: block;
 }
 
 #sec1 ul {
@@ -111,18 +112,6 @@ section {
 #sec1 button:hover {
   background-color: #87CEEB;
   color: white;
-}
-
-#sec1 .newCreate {
-  width: 100%;
-  padding: 10px;
-  background-color: #4682B4;
-  color: white;
-  border-radius: 4px;
-}
-
-#sec1 .newCreate:hover {
-  background-color: #1E90FF;
 }
 
 #menu_img {
@@ -266,6 +255,8 @@ section {
 }
 
 #sec3 input[type="text"],
+#sec3 input[type="email"],
+#sec3 input[type="password"],
 #sec3 input[type="date"],
 #sec3 select {
   padding: 10px;
@@ -309,11 +300,11 @@ section {
 /* Responsive styles */
 @media (min-width: 769px) {
   #bt1, #bt2 {
-    display: block; /* Hiển thị nút menu trên web */
+    display: block;
   }
 
   #sec1 {
-    display: block; /* Hiển thị mặc định trên web */
+    display: block;
   }
 
   #sec2 {
@@ -337,7 +328,7 @@ section {
   }
 
   #sec1 {
-    display: none; /* Ẩn menu mặc định trên di động */
+    display: none;
     position: absolute;
     top: 0;
     left: 0;

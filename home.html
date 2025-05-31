@@ -1,3 +1,4 @@
+<!-- frontend/home.html -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -24,13 +25,14 @@
     <section id="sec1">
       <button id="bt1" onclick="showSection2()"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
       <ul>
+        <li><button id="loginBtn" onclick="showLoginForm()">Đăng nhập</button></li>
+        <li><button id="logoutBtn" onclick="logout()" style="display: none;">Đăng xuất</button></li>
         <li><button onclick="filterTasks('all')">Tác vụ</button></li>
         <li><button onclick="filterTasks('today')">Ngày của tôi</button></li>
         <li><button onclick="filterTasks('important')">Quan trọng</button></li>
         <li><button onclick="showCalendar()">Lịch</button></li>
         <li><button onclick="showCompleted()">Đã hoàn thành</button></li>
       </ul>
-      <!-- <button class="newCreate" onclick="showSection3()">+ Tạo mới</button> -->
     </section>
     <section id="sec2">
       <button id="bt2" onclick="showSection1()" style="display: none;"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
@@ -61,6 +63,9 @@
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+  <script src="src/js/auth.js"></script>
+  <script src="src/js/tasks.js"></script>
+  <script src="src/js/calendar.js"></script>
   <script src="src/js/home.js"></script>
 </body>
 </html>
