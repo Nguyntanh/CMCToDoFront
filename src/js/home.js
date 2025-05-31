@@ -18,22 +18,57 @@ document.addEventListener('DOMContentLoaded', () => {
 function showSection2() {
   const sec1 = document.getElementById('sec1');
   const bt2 = document.getElementById('bt2');
+  const calendar = document.getElementById('calendar');
+  const taskList = document.getElementById('taskList');
+  const sec2Title = document.getElementById('sec2Title');
+
   if (window.innerWidth <= 768) {
     // Trên di động: Toggle menu
     sec1.style.display = sec1.style.display === 'block' ? 'none' : 'block';
     bt2.style.display = 'block'; // Luôn hiển thị nút menu trên di động
+
     if (sec1.style.display === 'none') {
-      document.getElementById('calendar').style.display = 'none';
-      document.getElementById('taskList').style.display = 'block';
-      document.getElementById('sec2Title').textContent = 'Tác vụ';
+      // Xác định tab đang hiển thị để cập nhật tiêu đề
+      if (calendar.style.display === 'block') {
+        sec2Title.textContent = 'Lịch';
+      } else if (taskList.style.display === 'block') {
+        // Kiểm tra nếu đang ở tab "Đã hoàn thành", "Ngày của tôi" hoặc "Quan trọng"
+        if (sec2Title.textContent === 'Đã hoàn thành') {
+          sec2Title.textContent = 'Đã hoàn thành';
+        } else if (sec2Title.textContent === 'Ngày của tôi') {
+          sec2Title.textContent = 'Ngày của tôi';
+        } else if (sec2Title.textContent === 'Quan trọng') {
+          sec2Title.textContent = 'Quan trọng';
+        } else {
+          sec2Title.textContent = 'Tác vụ';
+        }
+      }
     }
   } else {
     // Trên web: Toggle menu
     sec1.style.display = sec1.style.display === 'block' ? 'none' : 'block';
     bt2.style.display = sec1.style.display === 'block' ? 'none' : 'block';
-    document.getElementById('calendar').style.display = 'none';
-    document.getElementById('taskList').style.display = 'block';
-    document.getElementById('sec2Title').textContent = 'Tác vụ';
+    
+    // Xác định tab đang hiển thị để cập nhật tiêu đề
+    if (calendar.style.display === 'block') {
+      sec2Title.textContent = 'Lịch';
+    } else if (taskList.style.display === 'block') {
+      // Kiểm tra nếu đang ở tab "Đã hoàn thành", "Ngày của tôi" hoặc "Quan trọng"
+      if (sec2Title.textContent === 'Đã hoàn thành') {
+        sec2Title.textContent = 'Đã hoàn thành';
+      } else if (sec2Title.textContent === 'Ngày của tôi') {
+        sec2Title.textContent = 'Ngày của tôi';
+      } else if (sec2Title.textContent === 'Quan trọng') {
+        sec2Title.textContent = 'Quan trọng';
+      } else {
+        sec2Title.textContent = 'Tác vụ';
+      }
+    }
+  }
+
+  // Đảm bảo taskList hiển thị nếu không ở tab Lịch
+  if (calendar.style.display !== 'block') {
+    taskList.style.display = 'block';
   }
 }
 
