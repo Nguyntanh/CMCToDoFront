@@ -144,11 +144,11 @@ async function fetchTasks(filter = '', forCalendar = false) {
   try {
     let url;
     if (filter === 'completed') {
-      url = 'http://cmctodo.onrender.com/tasks?filter=completed';
+      url = 'https://cmctodo.onrender.com/tasks?filter=completed';
     } else if (filter === 'history') {
-      url = 'http://cmctodo.onrender.com/tasks?history=true';
+      url = 'https://cmctodo.onrender.com/tasks?history=true';
     } else {
-      url = filter ? `http://cmctodo.onrender.com/tasks?filter=${filter}` : 'http://cmctodo.onrender.com/tasks';
+      url = filter ? `https://cmctodo.onrender.com/tasks?filter=${filter}` : 'https://cmctodo.onrender.com/tasks';
     }
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch tasks');
@@ -211,13 +211,13 @@ async function addOrUpdateTask(event) {
   try {
     let response;
     if (id) {
-      response = await fetch(`http://cmctodo.onrender.com/tasks/${id}`, {
+      response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important })
       });
     } else {
-      response = await fetch('http://cmctodo.onrender.com/tasks', {
+      response = await fetch('https://cmctodo.onrender.com/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important })
@@ -238,7 +238,7 @@ async function addOrUpdateTask(event) {
 // Delete task
 async function deleteTask(id) {
   try {
-    const response = await fetch(`http://cmctodo.onrender.com/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'DELETE'
     });
     if (!response.ok) {
@@ -257,7 +257,7 @@ async function deleteTask(id) {
 // Toggle task completion
 async function toggleTask(id, completed) {
   try {
-    const response = await fetch(`http://cmctodo.onrender.com/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ completed })
