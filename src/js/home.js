@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('token');
   if (token) {
     document.getElementById('loginBtn').style.display = 'none';
-    document.getElementById('logoutBtn').style.display = 'block';
+    document.getElementById('userMenu').style.display = 'block';
     fetchTasks().catch(error => {
       console.error('Lỗi tải công việc ban đầu:', error);
       document.getElementById('taskList').innerHTML = '<li>Không thể tải công việc</li>';
