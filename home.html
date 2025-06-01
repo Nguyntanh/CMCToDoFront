@@ -1,4 +1,3 @@
-<!-- frontend/home.html -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -15,18 +14,24 @@
       <input type="search" id="searchInput" placeholder="Tìm kiếm công việc...">
       <img src="assets/img/search.png" alt="Search icon">
     </div>
-    <div class="tools">
-      <button class="setting" title="Cài đặt">⚙️</button>
-      <button class="help" title="Trợ giúp">❓</button>
-      <button class="whatnew" title="Có gì mới">🔔</button>
+    <div class="auth-buttons">
+      <button id="loginBtn" onclick="showLoginForm()">Đăng nhập</button>
+      <div class="user-menu" id="userMenu" style="display: none;">
+        <button class="avatar-btn" id="avatarBtn">
+          <img src="assets/img/default-avatar.png" alt="Avatar" class="avatar-img" id="avatarImg">
+        </button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <span id="usernameDisplay"></span>
+          <button onclick="showChangeAvatarForm()">Đổi ảnh đại diện</button>
+          <button onclick="logout()">Đăng xuất</button>
+        </div>
+      </div>
     </div>
   </header>
   <main>
     <section id="sec1">
       <button id="bt1" onclick="showSection2()"><img src="assets/img/menu.png" alt="Menu" id="menu_img"></button>
       <ul>
-        <li><button id="loginBtn" onclick="showLoginForm()">Đăng nhập</button></li>
-        <li><button id="logoutBtn" onclick="logout()" style="display: none;">Đăng xuất</button></li>
         <li><button onclick="filterTasks('all')">Tác vụ</button></li>
         <li><button onclick="filterTasks('today')">Ngày của tôi</button></li>
         <li><button onclick="filterTasks('important')">Quan trọng</button></li>

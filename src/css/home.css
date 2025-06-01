@@ -1,4 +1,3 @@
-/* frontend/src/css/home.css */
 * {
   margin: 0;
   padding: 0;
@@ -63,17 +62,118 @@ header img {
   margin-left: -25px;
 }
 
-.tools {
+.auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-.tools button {
-  width: 30px;
-  height: 30px;
-  background: none;
-  font-size: 18px;
+.auth-buttons button {
+  padding: 8px 16px;
+  background-color: #4682B4;
   color: white;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.auth-buttons button:hover {
+  background-color: #87CEEB;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.avatar-btn {
+  background: none;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #F5F9FF;
+  border: 1px solid #4682B4;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 150px;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.dropdown-menu span {
+  display: block;
+  padding: 8px 10px;
+  color: #2F4F4F;
+  font-weight: bold;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 8px 10px;
+  background: none;
+  color: #2F4F4F;
+  text-align: left;
+  font-size: 14px;
+}
+
+.dropdown-menu button:hover {
+  background-color: #87CEEB;
+  color: white;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+.avatar-options {
+  display: flex;
+  flex-wrap: wrap;
+  /* border-radius: 70%; */
+  gap: 10px;
+  justify-content: center;
+}
+
+.avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border-radius: 70%; */
+  gap: 5px;
+}
+
+.avatar-option img {
+  width: 45px;
+  height: 45px;
+  /* border-radius: 50%; */
+  object-fit: cover;
+  border: 2px solid transparent;
+}
+
+.avatar-option input[type="radio"]:checked + img {
+  border-color: #1E90FF;
 }
 
 main {
@@ -286,7 +386,7 @@ section {
 }
 
 #sec3 button[type="button"] {
-  background-color: #FF4500;
+  background-color: #FF4500 orangered;
 }
 
 #sec3 button:hover {
@@ -322,6 +422,65 @@ section {
 }
 
 @media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  header img {
+    width: 60px;
+  }
+
+  .search {
+    flex: 1 1 100%;
+    max-width: 55%;
+    height: 36px;
+  }
+
+  .search input {
+    font-size: 16px;
+  }
+
+  .auth-buttons {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .auth-buttons button {
+    padding: 8px 12px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .auth-buttons {
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .avatar-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dropdown-menu {
+    top: 40px;
+    min-width: 120px;
+  }
+
+  .avatar-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avatar-option img {
+    width: 40px;
+    height: 40px;
+  }
+
   main {
     flex-direction: column;
     position: relative;
