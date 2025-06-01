@@ -199,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     initCalendar();
     document.getElementById('taskForm').addEventListener('submit', addOrUpdateTask);
-    checkDeadlines();
   } else {
     document.getElementById('taskList').innerHTML = '<li>Vui lòng đăng nhập để xem công việc</li>';
     showLoginForm();
