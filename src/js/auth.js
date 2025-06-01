@@ -80,7 +80,7 @@ async function handleAvatarChange(event) {
   const avatarUrl = selectedAvatar.value;
 
   try {
-    const response = await fetch('http://localhost:3000/auth/update-avatar', {
+    const response = await fetch('https://cmctodo.onrender.com/auth/update-avatar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ async function handleAuth(event) {
   try {
     let response;
     if (formTitle === 'Đăng ký') {
-      response = await fetch('http://localhost:3000/auth/register', {
+      response = await fetch('https://cmctodo.onrender.com/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
@@ -127,7 +127,7 @@ async function handleAuth(event) {
       alert('Đăng ký thành công! Vui lòng đăng nhập.');
       showLoginForm();
     } else {
-      response = await fetch('http://localhost:3000/auth/login', {
+      response = await fetch('https://cmctodo.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

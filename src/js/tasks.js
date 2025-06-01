@@ -10,11 +10,11 @@ async function fetchTasks(filter = '', forCalendar = false) {
 
     let url;
     if (filter === 'completed') {
-      url = 'http://localhost:3000/tasks?filter=completed';
+      url = 'https://cmctodo.onrender.com/tasks?filter=completed';
     } else if (filter === 'history') {
-      url = 'http://localhost:3000/tasks?history=true';
+      url = 'https://cmctodo.onrender.com/tasks?history=true';
     } else {
-      url = filter ? `http://localhost:3000/tasks?filter=${filter}` : 'http://localhost:3000/tasks';
+      url = filter ? `https://cmctodo.onrender.com/tasks?filter=${filter}` : 'https://cmctodo.onrender.com/tasks';
     }
 
     const response = await fetch(url, {
@@ -107,7 +107,7 @@ async function addOrUpdateTask(event) {
 
     let response;
     if (id) {
-      response = await fetch(`http://localhost:3000/tasks/${id}`, {
+      response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ async function addOrUpdateTask(event) {
         body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important })
       });
     } else {
-      response = await fetch('http://localhost:3000/tasks', {
+      response = await fetch('https://cmctodo.onrender.com/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ async function deleteTask(id) {
       return;
     }
 
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -204,7 +204,7 @@ async function toggleTask(id, completed) {
       return;
     }
 
-    const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response = await fetch(`https://cmctodo.onrender.com/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
