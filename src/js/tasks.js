@@ -54,12 +54,13 @@ async function fetchTasks(filter = '', forCalendar = false) {
       const li = document.createElement('li');
       li.setAttribute('data-color', task.color || '#87CEEB');
       li.innerHTML = `
-        <div class="task-content" onclick="editTask('${task._id}', '${task.text}', '${task.dueDate || ''}', '${task.color || ''}', ${task.isToday}, ${task.important})">
+        <div class="task-content" onclick="editTask('${task._id}', '${task.text}', '${task.dueDate || ''}', '${task.color || ''}', ${task.isToday}, ${task.important}, '${task.notificationEmail || ''}')">
           <span class="${task.completed ? 'completed' : ''}">${task.text}</span>
         </div>
         <div class="task-details">
           <span>Đã tạo: ${new Date(task.createdAt).toLocaleString('vi-VN')}</span>
           ${task.dueDate ? `<span> | Hạn: ${new Date(task.dueDate).toLocaleDateString('vi-VN')}</span>` : ''}
+          ${task.notificationEmail ? `<span> | Email: ${task.notificationEmail}</span>` : ''}
           ${task.completedAt ? `<span> | Hoàn thành: ${new Date(task.completedAt).toLocaleString('vi-VN')}</span>` : ''}
           ${task.isToday ? '<span> | Ngày của tôi</span>' : ''}
           ${task.important ? '<span> | Quan trọng</span>' : ''}
@@ -92,6 +93,7 @@ async function addOrUpdateTask(event) {
   const noteColor = document.getElementById('noteColor').value;
   const isToday = document.getElementById('isToday').checked;
   const important = document.getElementById('important').checked;
+  const notificationEmail = document.getElementById('notificationEmail').value;
   const submitButton = document.getElementById('submitButton');
   const text = taskInput.value.trim();
   const id = submitButton.getAttribute('data-id');
@@ -113,7 +115,7 @@ async function addOrUpdateTask(event) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important })
+        body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important, notificationEmail })
       });
     } else {
       response = await fetch('https://cmctodo.onrender.com/tasks', {
@@ -122,7 +124,7 @@ async function addOrUpdateTask(event) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important })
+        body: JSON.stringify({ text, dueDate, color: noteColor, isToday, important, notificationEmail })
       });
     }
 
@@ -253,21 +255,6 @@ function showCompleted() {
   filterTasks('completed');
 }
 
-function checkDeadlines() {
-  setInterval(async () => {
-    const tasks = await fetchTasks(null, true) || [];
-    const now = new Date();
-    tasks.forEach(task => {
-      if (task.dueDate && !task.completed && !task.deleted) {
-        const due = new Date(task.dueDate);
-        if (due.toDateString() === now.toDateString()) {
-          alert(`Nhắc nhở: Công việc "${task.text}" đã đến hạn!`);
-        }
-      }
-    });
-  }, 60000);
-}
-
-function editTask(id, text, dueDate, color, isToday, important) {
-  showSection3({ id, text, dueDate, color, isToday, important });
+function editTask(id, text, dueDate, color, isToday, important, notificationEmail) {
+  showSection3({ id, text, dueDate, color, isToday, important, notificationEmail });
 }

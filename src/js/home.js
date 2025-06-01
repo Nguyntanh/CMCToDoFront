@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     initCalendar();
     document.getElementById('taskForm').addEventListener('submit', addOrUpdateTask);
-    checkDeadlines();
+    // Xóa checkDeadlines();
   } else {
     document.getElementById('taskList').innerHTML = '<li>Vui lòng đăng nhập để xem công việc</li>';
     showLoginForm();
@@ -78,6 +78,7 @@ function showSection3(options = {}) {
   taskForm.innerHTML = `
     <input type="text" id="taskInput" placeholder="Nhập công việc..." required value="${options.text || ''}">
     <input type="date" id="dueDate" placeholder="Ngày hết hạn" value="${options.dueDate ? new Date(options.dueDate).toISOString().split('T')[0] : options.date || ''}">
+    <input type="email" id="notificationEmail" placeholder="Email nhận thông báo" value="${options.notificationEmail || ''}">
     <select id="noteColor">
       <option value="">Chọn màu</option>
       <option value="#1E90FF" ${options.color === '#1E90FF' ? 'selected' : ''}>Xanh đậm</option>
